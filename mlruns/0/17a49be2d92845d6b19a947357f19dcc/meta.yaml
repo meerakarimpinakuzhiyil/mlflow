@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/meera/mlflow1/mlruns/0/17a49be2d92845d6b19a947357f19dcc/artifacts
+end_time: 1705153262633
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 17a49be2d92845d6b19a947357f19dcc
+run_name: traveling-wolf-458
+run_uuid: 17a49be2d92845d6b19a947357f19dcc
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1705153253798
+status: 3
+tags: []
+user_id: wn00226788

@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/meera/mlflow1/mlruns/0/8df8d7289c374c6ba84b0014ca3b57d0/artifacts
+end_time: 1705154350963
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 8df8d7289c374c6ba84b0014ca3b57d0
+run_name: efficient-slug-450
+run_uuid: 8df8d7289c374c6ba84b0014ca3b57d0
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1705154340944
+status: 3
+tags: []
+user_id: wn00226788
