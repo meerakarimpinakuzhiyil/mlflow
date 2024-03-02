@@ -1,0 +1,108 @@
+{
+  "terraform": {
+    "required_providers": {
+      "databricks": {
+        "source": "databricks/databricks",
+        "version": "1.37.0"
+      }
+    }
+  },
+  "provider": {
+    "databricks": {}
+  },
+  "resource": {
+    "databricks_job": {
+      "databricks_bundle_job": {
+        "deployment": {
+          "kind": "BUNDLE",
+          "metadata_file_path": "/Users/meera.karimpinakuzhiyil@wuerth-it.com/.bundle/databricks_bundle/dev/state/metadata.json"
+        },
+        "edit_mode": "UI_LOCKED",
+        "email_notifications": {
+          "on_failure": [
+            "meera.karimpinakuzhiyil@wuerth-it.com"
+          ]
+        },
+        "format": "MULTI_TASK",
+        "job_cluster": [
+          {
+            "job_cluster_key": "job_cluster",
+            "new_cluster": {
+              "autoscale": {
+                "max_workers": 4,
+                "min_workers": 1
+              },
+              "node_type_id": "i3.xlarge",
+              "spark_version": "13.3.x-scala2.12"
+            }
+          }
+        ],
+        "max_concurrent_runs": 4,
+        "name": "[dev meera_karimpinakuzhiyil] databricks_bundle_job",
+        "schedule": {
+          "pause_status": "PAUSED",
+          "quartz_cron_expression": "44 37 8 * * ?",
+          "timezone_id": "Europe/Amsterdam"
+        },
+        "tags": {
+          "dev": "meera_karimpinakuzhiyil"
+        },
+        "task": [
+          {
+            "job_cluster_key": "job_cluster",
+            "notebook_task": {
+              "notebook_path": "/Users/meera.karimpinakuzhiyil@wuerth-it.com/.bundle/databricks_bundle/dev/files/src/notebook"
+            },
+            "task_key": "notebook_task"
+          },
+          {
+            "depends_on": [
+              {
+                "task_key": "notebook_task"
+              }
+            ],
+            "pipeline_task": {
+              "pipeline_id": "${databricks_pipeline.databricks_bundle_pipeline.id}"
+            },
+            "task_key": "refresh_pipeline"
+          },
+          {
+            "depends_on": [
+              {
+                "task_key": "refresh_pipeline"
+              }
+            ],
+            "job_cluster_key": "job_cluster",
+            "library": [
+              {
+                "whl": "dist\\*.whl"
+              }
+            ],
+            "python_wheel_task": {
+              "entry_point": "main",
+              "package_name": "databricks_bundle"
+            },
+            "task_key": "main_task"
+          }
+        ]
+      }
+    },
+    "databricks_pipeline": {
+      "databricks_bundle_pipeline": {
+        "configuration": {
+          "bundle.sourcePath": "/Workspace//Users/meera.karimpinakuzhiyil@wuerth-it.com/.bundle/databricks_bundle/dev/files/src"
+        },
+        "development": true,
+        "library": [
+          {
+            "notebook": {
+              "path": "/Users/meera.karimpinakuzhiyil@wuerth-it.com/.bundle/databricks_bundle/dev/files/src/dlt_pipeline"
+            }
+          }
+        ],
+        "name": "[dev meera_karimpinakuzhiyil] databricks_bundle_pipeline",
+        "target": "databricks_bundle_dev"
+      }
+    }
+  }
+}

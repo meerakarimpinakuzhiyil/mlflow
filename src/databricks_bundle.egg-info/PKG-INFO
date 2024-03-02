@@ -1,0 +1,7 @@
+Metadata-Version: 2.1
+Name: databricks-bundle
+Version: 0.0.1+20240302.161801
+Summary: wheel file based on databricks_bundle/src
+Home-page: https://databricks.com
+Author: meera.karimpinakuzhiyil@wuerth-it.com
+Requires-Dist: setuptools

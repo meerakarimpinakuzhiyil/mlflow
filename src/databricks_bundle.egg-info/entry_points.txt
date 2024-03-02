@@ -1,0 +1,2 @@
+[packages]
+main = databricks_bundle.main:main
